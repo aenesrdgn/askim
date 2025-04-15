@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senin Hakkında Sevdiğim Şeyler</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fce4ec;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      color: #880e4f;
+    }
+    h1 {
+      margin: 0 20px 20px;
+      font-size: 2rem;
+    }
+    img {
+      max-width: 300px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    iframe {
+      margin-top: 20px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="reason">Yükleniyor...</h1>
+  <img id="photo" src="" alt="" style="display: none;" />
+  <iframe id="music" width="300" height="170" style="display: none;"></iframe>
+
+  <script>
+    const data = [
+      { reason: "1. Her anımda yanımda olman.", photo: "photo1.jpg" },
+      { reason: "2. İstediğimiz her şeyi beraber yapabiliyor olmamız.", photo: "photo2.jpg" },
+      { reason: "3. Bu şarkı gibi hissettirmen", photo: "photo3.jpg", music: "https://www.youtube.com/embed/FLsFNQ3PvU8" },
+      { reason: "4. Az da olsa beraber yaptığımız geziler." },
+      { reason: "5. En kötü zamanlarda bile beraber oluşumuz." },
+      { reason: "6. Her düştüğümüzde birbirimize destek oluşumuz." },
+      { reason: "7. Her gün yaptığımız iyi geceler rutinimiz." },
+      { reason: "8. Beraber amaçsızca yürüyüşlerimiz." },
+      { reason: "9. Beraber bir şeyler keşfedişimiz." },
+      { reason: "10. Beraber her şeye gülebilişimiz." },
+      { reason: "11. Gülüşün." },
+      { reason: "12. Bana bakışın." },
+      { reason: "13. En ufak şeye tatlı tatlı tepkilerin." },
+      { reason: "14. Bitmek bilmeyen hapşuruşların." },
+      { reason: "15. Kapıdan girerkenki yüz ifaden." },
+      { reason: "16. İnlemen." },
+      { reason: "17. Küçük başarılarımızı bile kutlamamız." },
+      { reason: "18. Bana tüm vücudunla sarılışın." },
+      { reason: "19. Başını omzuma koyuşun." },
+      { reason: "20. Özellikle kolumun tadına bakman." },
+      { reason: "21. Öpüşün." },
+      { reason: "22. Öpülüşün." },
+      { reason: "23. Anılarımı ya da anlattıklarımı dinleyişin." },
+      { reason: "24. Aramızda şehirler olduğunda bile yanında hissetmem." },
+      { reason: "25. Teoman konserimiz." },
+      { reason: "26. Sürekli durum bildirimi yapman." },
+      { reason: "27. Yanında çocuklaşabilmem." },
+      { reason: "28. Beni her anlamda konforlu hissettirmen." },
+      { reason: "29. En ufak şeyi etkinlik haline getirişimiz." },
+      { reason: "30. Wordle ve GeoGuesser geleneğimiz." },
+      { reason: "31. Latife datelerimiz." },
+      { reason: "32. 17. doğum günün." },
+      { reason: "33. 17. doğum günün." },
+      { reason: "34. Çakır halin." },
+      { reason: "35. Alakasız yetenek ve funfactlerimden etkilenmen." },
+      { reason: "36. Yaptığım şakaları anında anlaman." },
+      { reason: "37. Beraber film izleyişimiz." },
+      { reason: "38. Benim önerilerime şans vermen." },
+      { reason: "39. Letterboxd yorumların." },
+      { reason: "40. Dokunuşun." },
+      { reason: "41. Tatlı tatlı konuşuşun." },
+      { reason: "42. Söylediklerimi aklında tutman." },
+      { reason: "43. Anlattıklarımı kaçıncıya anlatırsam anlatayım ilk seferki gibi dinlemen." },
+      { reason: "44. Beni her anlamda motive edişin." },
+      { reason: "45. Bu siteyi yapmama sebep oluşun." },
+      { reason: "46. Bu madde geldiğindeki gülüşün." },
+      { reason: "47. Kurduğumuz hayaller." },
+      { reason: "48. Beraber denemek istediğimiz şeyler." },
+      { reason: "49. Büyük küçük planlar yapmamız." },
+      { reason: "50. Gelecekle ilgili her şeyimizi beraber planlamamız." },
+      { reason: "51. İltifatlarıma tepkin." },
+      { reason: "52. Yanımda hep en doğal halin olman." },
+      { reason: "53. Seni seviyorum diyişin." },
+      { reason: "54. Sana bitişik yaşamayı istememe sebep olman." },
+      { reason: "55. Tepkini düşünmemin bile uykumun kaçmasına yetmesi." },
+      { reason: "56. Her halinle aşkım oluşun." },
+      { reason: "57. Şifre denemelerin." },
+      { reason: "58. Hem ortak hem de tamamen zıt özelliklerimizin oluşu." },
+      { reason: "59. Beni her halimle sevişin." },
+      { reason: "60. Seni her gün dünden daha çok seviyor olmam." },
+      { reason: "61. Her şeyini anlatman." },
+      { reason: "62. Beni çok iyi tanıyor oluşun." },
+      { reason: "63. Beraber Ankara’yı düşlememiz." },
+      { reason: "64. Sınav senemizde bile birbirimize bu kadar zaman ayırabilmemiz." },
+      { reason: "65. Keşfet saatimiz." },
+      { reason: "66. Hiçbir zıt görüşümüzün sorun çıkarmamış olması." },
+      { reason: "67. Beni bunları yazarken duygulandırışın." },
+      { reason: "68. Mezuniyet için tatlı tatlı heyecanlanman." },
+      { reason: "69. Beraber saatlerce ders çalışmamız." }
+    ];
+
+    const item = data[Math.floor(Math.random() * data.length)];
+
+    document.getElementById("reason").textContent = item.reason;
+
+    if (item.photo) {
+      const photo = document.getElementById("photo");
+      photo.src = item.photo;
+      photo.style.display = 'block';
+    }
+
+    if (item.music) {
+      const music = document.getElementById("music");
+      music.src = item.music;
+      music.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
